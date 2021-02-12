@@ -1,0 +1,17 @@
+((lp1
+S'ParticipantId'
+p2
+aS'ParticipantAge'
+p3
+aS'ParticipantSex'
+p4
+aS'ParticipantHeight'
+p5
+a(lp6
+S'TEST_HIT_FAR_LANE'
+p7
+aS''
+aS''
+aS''
+atp8
+.
