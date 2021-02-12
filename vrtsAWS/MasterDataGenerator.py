@@ -140,7 +140,7 @@ class MasterDataGenerator:
                 non_practice_trials_output = self._get_non_practice_trials_output(
                     p_sessions)
 
-                #print "\n".join(s for s in speed_trials_output)
+                # print "\n".join(s for s in speed_trials_output)
                 print "\n".join(s for s in non_practice_trials_output)
 
                # master_data_file.write(
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
     #	data_dir = "C:\\Users\\user\\Desktop\\Partic Mean GAP SIZE\\Paste DATA here\\"
     #	data_dir = "C:\\Users\\user\\Desktop\\BackpackTestingData\\"
-    data_dir = 'C:\\Users\\CDRU\\Desktop\\vrtsAWS\\testdata'
+    data_dir = '../testdata/'
     print(data_dir)
     dh = DataHandler()
     participant_sessions = dh.get_participant_sessions(
