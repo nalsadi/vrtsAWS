@@ -224,75 +224,75 @@ class RawDataParser(BaseDataParser):
 			trialDataDictionary[VariableNames.MeanWalkingSpeedRWV] = self.__meanWalkingSpeedRWV
 			trialDataDictionary[VariableNames.MeanRunningSpeedRWV] = self.__meanRunningSpeedRWV
 			trialDataDictionary[VariableNames.Phase] = Phase.toStr(self._participant_session.get_phase())
-#			
-#			# TRIAL RESULT
-#			trial_result = self.getTrialResult(trialData)
-#			trialDataDictionary[VariableNames.TrialResult] = trial_result
-#
-#			if trial_result == TrialResult.ENTERED_BEFORE_FIRST_CAR:
-#				#print "ENTERED BEFORE FIRST CAR"
-#				self.__trialsDataDictionary[participant_trial] = trialDataDictionary
-#				continue
-#
-#			
-#			#DURATION
-			trialDataDictionary[VariableNames.TrialDuration] = self.calculateTrialDuration(trialData)
-			trialDataDictionary[VariableNames.DurationInRoad] = self.calculateDurationInRoad(trialData) #for each road entrance [dur1, dur2, etc]
-			trialDataDictionary[VariableNames.DurationInCarPath] = self.calculateDurationInCarPath(trialData) # for the last car path entrance
+			
+			# TRIAL RESULT
+			trial_result = self.getTrialResult(trialData)
+			trialDataDictionary[VariableNames.TrialResult] = trial_result
+
+			if trial_result == TrialResult.ENTERED_BEFORE_FIRST_CAR:
+				#print "ENTERED BEFORE FIRST CAR"
+				self.__trialsDataDictionary[participant_trial] = trialDataDictionary
+				continue
+
+			
+			#DURATION
+#			trialDataDictionary[VariableNames.TrialDuration] = self.calculateTrialDuration(trialData)
+#			trialDataDictionary[VariableNames.DurationInRoad] = self.calculateDurationInRoad(trialData) #for each road entrance [dur1, dur2, etc]
+#			trialDataDictionary[VariableNames.DurationInCarPath] = self.calculateDurationInCarPath(trialData) # for the last car path entrance
 			trialDataDictionary[VariableNames.DurationInMiddleOfRoad] = self.calculateDurationInMiddleOfRoad(trialData) # Duration in Middle of Road in need to find output of this function
 			trialDataDictionary[VariableNames.DurationInMiddleOfRoadList] = self.calculateDurationInMiddleOfRoadList(trialData) # Duration in Middle of Road in need to find output of this function
 			trialDataDictionary[VariableNames.DurationInMiddleOfRoadSum] = self.calculateDurationInMiddleOfRoadSum(trialData) # Duration in Middle of Road in need to find output of this function
-##			# NUMBER OF CHECKS (FULL/PARTIAL, IN ROAD/ON SIDEWALK/IN CAR PATH/BETWEEN CURB AND CAR PATH)
-			trialDataDictionary[VariableNames.FullChecksInRoad] = self.calculate_number_of_full_checks_in_road(trialData)
-			trialDataDictionary[VariableNames.FullChecksOnSidewalk] = self.calculate_number_of_full_checks_on_sidewalk(trialData)
-			trialDataDictionary[VariableNames.FullChecksInCarPath] = self.calculate_number_of_full_checks_in_car_path(trialData)
-			trialDataDictionary[VariableNames.FullChecksBetweenCurbAndCarPath] = self.calculate_number_of_full_checks_between_curb_and_car_path(trialData)
-			trialDataDictionary[VariableNames.PartialChecksInRoad] = self.calculate_number_of_partial_checks_in_road(trialData)
-			trialDataDictionary[VariableNames.PartialChecksOnSidewalk] = self.calculate_number_of_partial_checks_on_sidewalk(trialData)
-			trialDataDictionary[VariableNames.PartialChecksInCarPath] = self.calculate_number_of_partial_checks_in_car_path(trialData)
-			trialDataDictionary[VariableNames.PartialChecksBetweenCurbAndCarPath] = self.calculate_number_of_partial_checks_between_curb_and_car_path(trialData)
-##			
-			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewInRoad] = self.calculate_full_checks_with_car_in_view_in_road(trialData)
-			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewOnSidewalk] = self.calculate_full_checks_with_car_in_view_on_sidewalk(trialData)
-			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewInCarPath] = self.calculate_full_checks_with_car_in_view_in_car_path(trialData)
-			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewBetweenCurbAndCarPath] = self.calculate_full_checks_with_car_in_view_between_curb_and_car_path(trialData)
-			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewInRoad] = self.calculate_partial_checks_with_car_in_view_in_road(trialData)
-##			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewOnSidewalk] = self.calculate_partial_checks_with_car_in_view_on_sidewalk(trialData)
-##			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewInCarPath] = self.calculate_partial_checks_with_car_in_view_in_car_path(trialData)
-##			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewBetweenCurbAndCarPath] = self.calculate_partial_checks_with_car_in_view_between_curb_and_car_path(trialData)
-##			
-##			# MEAN CHECK TIME (FULL/PARTIAL, IN ROAD/ON SIDEWALK/IN CAR PATH/BETWEEN CURB AND CAR PATH)
-##			trialDataDictionary[VariableNames.MeanFullCheckTimeInRoad] = self.calculate_mean_full_check_time_in_road(trialData)
-##			trialDataDictionary[VariableNames.MeanFullCheckTimeOnSidewalk] = self.calculate_mean_full_check_time_on_sidewalk(trialData)
-##			trialDataDictionary[VariableNames.MeanFullCheckTimeInCarPath] = self.calculate_mean_full_check_time_in_car_path(trialData)
-##			trialDataDictionary[VariableNames.MeanFullCheckTimeBetweenCurbAndCarPath] = self.calculate_mean_full_check_time_between_curb_and_car_path(trialData)
-##			trialDataDictionary[VariableNames.MeanPartialCheckTimeInRoad] = self.calculate_mean_partial_check_time_in_road(trialData)
-##			trialDataDictionary[VariableNames.MeanPartialCheckTimeOnSidewalk] = self.calculate_mean_partial_check_time_on_sidewalk(trialData)
-##			trialDataDictionary[VariableNames.MeanPartialCheckTimeInCarPath] = self.calculate_mean_partial_check_time_in_car_path(trialData)
-##			trialDataDictionary[VariableNames.MeanPartialCheckTimeBetweenCurbAndCarPath] = self.calculate_mean_partial_check_time_between_curb_and_car_path(trialData)
-##			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewInRoad] = self.calculate_mean_car_in_view_check_time_in_road(trialData)
-##			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewOnSidewalk] = self.calculate_mean_car_in_view_check_time_on_sidewalk(trialData)
-##			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewInCarPath] = self.calculate_mean_car_in_view_check_time_in_car_path(trialData)
-##			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewBetweenCurbAndCarPath] = self.calculate_mean_car_in_view_check_time_between_curb_and_car_path(trialData)
-##			
-##			# PERCENT CHECKING (FULL/PARTIAL, IN ROAD/ON SIDEWALK/IN CAR PATH/BETWEEN CURB AND CAR PATH)
-##			trialDataDictionary[VariableNames.PercentFullCheckingInRoad] = self.calculate_percent_full_checking_in_road(trialData)
-##			trialDataDictionary[VariableNames.PercentFullCheckingOnSidewalk] = self.calculate_percent_full_checking_on_sidewalk(trialData)
-##			trialDataDictionary[VariableNames.PercentFullCheckingInCarPath] = self.calculate_percent_full_checking_in_car_path(trialData)
-##			trialDataDictionary[VariableNames.PercentFullCheckingBetweenCurbAndCarPath] = self.calculate_percent_full_checking_between_curb_and_car_path(trialData)
-##			trialDataDictionary[VariableNames.PercentPartialCheckingInRoad] = self.calculate_percent_partial_checking_in_road(trialData)
-##			trialDataDictionary[VariableNames.PercentPartialCheckingOnSidewalk] = self.calculate_percent_partial_checking_on_sidewalk(trialData)
-##			trialDataDictionary[VariableNames.PercentPartialCheckingInCarPath] = self.calculate_percent_partial_checking_in_car_path(trialData)
-##			trialDataDictionary[VariableNames.PercentPartialCheckingBetweenCurbAndCarPath] = self.calculate_percent_partial_checking_between_curb_and_car_path(trialData)
-##						
-##			#TODO: NEED TESTING
-#			trialDataDictionary[VariableNames.LFCInViewOnMiddleOfRoadEntry] = self.calculate_is_looking_at_far_lane_car_on_middle_of_road_entry(trialData)
-#			trialDataDictionary[VariableNames.PercentTimeClosestLFCInViewInNearLane] = self.calculate_percent_closest_LFC_in_view_in_near_lane(trialData)
-#			trialDataDictionary[VariableNames.PercentTimeClosestRFCInViewInNearLane] = self.calculate_percent_closest_RFC_in_view_in_near_lane(trialData)
-#			trialDataDictionary[VariableNames.PercentTimeClosestLFCInViewInFarLane] = self.calculate_percent_time_closest_LFC_in_view_in_far_lane(trialData)
-#			trialDataDictionary[VariableNames.PercentTimeClosestRFCInViewInFarLane] = self.calculate_percent_time_closest_RFC_in_view_in_far_lane(trialData)
-#			trialDataDictionary[VariableNames.PercentTimeClosestLFCInViewBetweenCarPaths] = self.calculate_percent_time_closest_LFC_in_view_between_car_paths(trialData)
-#			trialDataDictionary[VariableNames.PercentTimeClosestRFCInViewBetweenCarPaths] = self.calculate_percent_time_closest_RFC_in_view_between_car_paths(trialData)
+#			# NUMBER OF CHECKS (FULL/PARTIAL, IN ROAD/ON SIDEWALK/IN CAR PATH/BETWEEN CURB AND CAR PATH)
+#			trialDataDictionary[VariableNames.FullChecksInRoad] = self.calculate_number_of_full_checks_in_road(trialData)
+#			trialDataDictionary[VariableNames.FullChecksOnSidewalk] = self.calculate_number_of_full_checks_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.FullChecksInCarPath] = self.calculate_number_of_full_checks_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.FullChecksBetweenCurbAndCarPath] = self.calculate_number_of_full_checks_between_curb_and_car_path(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksInRoad] = self.calculate_number_of_partial_checks_in_road(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksOnSidewalk] = self.calculate_number_of_partial_checks_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksInCarPath] = self.calculate_number_of_partial_checks_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksBetweenCurbAndCarPath] = self.calculate_number_of_partial_checks_between_curb_and_car_path(trialData)
+#			
+#			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewInRoad] = self.calculate_full_checks_with_car_in_view_in_road(trialData)
+#			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewOnSidewalk] = self.calculate_full_checks_with_car_in_view_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewInCarPath] = self.calculate_full_checks_with_car_in_view_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.FullChecksWithClosestCarInViewBetweenCurbAndCarPath] = self.calculate_full_checks_with_car_in_view_between_curb_and_car_path(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewInRoad] = self.calculate_partial_checks_with_car_in_view_in_road(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewOnSidewalk] = self.calculate_partial_checks_with_car_in_view_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewInCarPath] = self.calculate_partial_checks_with_car_in_view_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.PartialChecksWithClosestCarInViewBetweenCurbAndCarPath] = self.calculate_partial_checks_with_car_in_view_between_curb_and_car_path(trialData)
+#			
+#			# MEAN CHECK TIME (FULL/PARTIAL, IN ROAD/ON SIDEWALK/IN CAR PATH/BETWEEN CURB AND CAR PATH)
+#			trialDataDictionary[VariableNames.MeanFullCheckTimeInRoad] = self.calculate_mean_full_check_time_in_road(trialData)
+#			trialDataDictionary[VariableNames.MeanFullCheckTimeOnSidewalk] = self.calculate_mean_full_check_time_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.MeanFullCheckTimeInCarPath] = self.calculate_mean_full_check_time_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.MeanFullCheckTimeBetweenCurbAndCarPath] = self.calculate_mean_full_check_time_between_curb_and_car_path(trialData)
+#			trialDataDictionary[VariableNames.MeanPartialCheckTimeInRoad] = self.calculate_mean_partial_check_time_in_road(trialData)
+#			trialDataDictionary[VariableNames.MeanPartialCheckTimeOnSidewalk] = self.calculate_mean_partial_check_time_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.MeanPartialCheckTimeInCarPath] = self.calculate_mean_partial_check_time_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.MeanPartialCheckTimeBetweenCurbAndCarPath] = self.calculate_mean_partial_check_time_between_curb_and_car_path(trialData)
+#			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewInRoad] = self.calculate_mean_car_in_view_check_time_in_road(trialData)
+#			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewOnSidewalk] = self.calculate_mean_car_in_view_check_time_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewInCarPath] = self.calculate_mean_car_in_view_check_time_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.MeanTimeWithClosestCarInViewBetweenCurbAndCarPath] = self.calculate_mean_car_in_view_check_time_between_curb_and_car_path(trialData)
+#			
+#			# PERCENT CHECKING (FULL/PARTIAL, IN ROAD/ON SIDEWALK/IN CAR PATH/BETWEEN CURB AND CAR PATH)
+#			trialDataDictionary[VariableNames.PercentFullCheckingInRoad] = self.calculate_percent_full_checking_in_road(trialData)
+#			trialDataDictionary[VariableNames.PercentFullCheckingOnSidewalk] = self.calculate_percent_full_checking_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.PercentFullCheckingInCarPath] = self.calculate_percent_full_checking_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.PercentFullCheckingBetweenCurbAndCarPath] = self.calculate_percent_full_checking_between_curb_and_car_path(trialData)
+#			trialDataDictionary[VariableNames.PercentPartialCheckingInRoad] = self.calculate_percent_partial_checking_in_road(trialData)
+#			trialDataDictionary[VariableNames.PercentPartialCheckingOnSidewalk] = self.calculate_percent_partial_checking_on_sidewalk(trialData)
+#			trialDataDictionary[VariableNames.PercentPartialCheckingInCarPath] = self.calculate_percent_partial_checking_in_car_path(trialData)
+#			trialDataDictionary[VariableNames.PercentPartialCheckingBetweenCurbAndCarPath] = self.calculate_percent_partial_checking_between_curb_and_car_path(trialData)
+#						
+#			#TODO: NEED TESTING
+			trialDataDictionary[VariableNames.LFCInViewOnMiddleOfRoadEntry] = self.calculate_is_looking_at_far_lane_car_on_middle_of_road_entry(trialData)
+			trialDataDictionary[VariableNames.PercentTimeClosestLFCInViewInNearLane] = self.calculate_percent_closest_LFC_in_view_in_near_lane(trialData)
+			trialDataDictionary[VariableNames.PercentTimeClosestRFCInViewInNearLane] = self.calculate_percent_closest_RFC_in_view_in_near_lane(trialData)
+			trialDataDictionary[VariableNames.PercentTimeClosestLFCInViewInFarLane] = self.calculate_percent_time_closest_LFC_in_view_in_far_lane(trialData)
+			trialDataDictionary[VariableNames.PercentTimeClosestRFCInViewInFarLane] = self.calculate_percent_time_closest_RFC_in_view_in_far_lane(trialData)
+			trialDataDictionary[VariableNames.PercentTimeClosestLFCInViewBetweenCarPaths] = self.calculate_percent_time_closest_LFC_in_view_between_car_paths(trialData)
+			trialDataDictionary[VariableNames.PercentTimeClosestRFCInViewBetweenCarPaths] = self.calculate_percent_time_closest_RFC_in_view_between_car_paths(trialData)
 
 			###
 			
