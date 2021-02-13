@@ -13,3 +13,66 @@
 2021-02-12 00:50:16,971 INFO MASTER DATA GENERATOR START
 2021-02-12 00:50:16,973 INFO attempting to process master data
 2021-02-12 00:50:20,944 INFO master data generator finished and exiting
+2021-02-12 21:30:58,029 INFO MASTER DATA GENERATOR START
+2021-02-12 21:30:58,036 INFO attempting to process master data
+2021-02-12 21:30:58,121 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialParticipant.py", line 42, in __init__
+    self._write_velocity_data_to_file()
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialParticipant.py", line 106, in _write_velocity_data_to_file
+    with open('C:\\vr\\vr3\\_master_data\\velocity_data.txt', 'w') as file:
+IOError: [Errno 2] No such file or directory: 'C:\\vr\\vr3\\_master_data\\velocity_data.txt'
+2021-02-12 21:30:58,242 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialParticipant.py", line 42, in __init__
+    self._write_velocity_data_to_file()
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialParticipant.py", line 106, in _write_velocity_data_to_file
+    with open('C:\\vr\\vr3\\_master_data\\velocity_data.txt', 'w') as file:
+IOError: [Errno 2] No such file or directory: 'C:\\vr\\vr3\\_master_data\\velocity_data.txt'
+2021-02-12 21:30:58,453 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialParticipant.py", line 42, in __init__
+    self._write_velocity_data_to_file()
+  File "C:\Users\14166\OneDrive\Documents\vrtsAWS\vrtsAWS\TrialParticipant.py", line 106, in _write_velocity_data_to_file
+    with open('C:\\vr\\vr3\\_master_data\\velocity_data.txt', 'w') as file:
+IOError: [Errno 2] No such file or directory: 'C:\\vr\\vr3\\_master_data\\velocity_data.txt'
+2021-02-12 21:30:58,461 INFO master data generator finished and exiting
+2021-02-12 21:35:10,003 INFO MASTER DATA GENERATOR START
+2021-02-12 21:35:10,007 INFO attempting to process master data
+2021-02-12 21:35:43,677 INFO master data generator finished and exiting
