@@ -60,7 +60,7 @@ class TrialParticipant():
 			
 			#sanity check
 			if t != ori_t:
-				print "ERROR MAKING PARTICIPANT DATA, SOMETHING IS NOT ALIGNED"
+				print ("ERROR MAKING PARTICIPANT DATA, SOMETHING IS NOT ALIGNED")
 			
 			pos = self._position_data[i][PositionData.POSITION]
 			ori = self._orientation_data[i][OrientationData.ORIENTATION]
@@ -103,7 +103,7 @@ class TrialParticipant():
 		
 	def _write_velocity_data_to_file(self):
 		''' writes the participant_velocity_data dict to a file, for debugging '''
-		with open('C:\\vr\\vr3\\_master_data\\velocity_data.txt', 'w') as file:
+		with open('velocity_data.txt', 'w') as file:
 			file.write("t;v\n")
 			for t in sorted(self._participant_velocity_data.keys()):
 				v = self._participant_velocity_data[t]
@@ -119,8 +119,8 @@ class TrialParticipant():
 		
 		# check that there is enough data to apply the filter
 		if len(sorted_velocities) < window_length:
-			print "\n*** TrialParticipant._repair_velocity_data_by_signal_smoothing: not enough velocity data to apply S-G filter."
-			print "\t--smoothing will not be applied to this trial\n"
+			###print "\n*** TrialParticipant._repair_velocity_data_by_signal_smoothing: not enough velocity data to apply S-G filter."
+			###print "\t--smoothing will not be applied to this trial\n"
 			return
 		
 		# A note on the parameters below (sorted_velocities, m, n):
@@ -150,7 +150,7 @@ class TrialParticipant():
 		for t, v in sorted(self._participant_velocity_data.iteritems()):
 			delta_t = t - prev_t
 			if self._is_abnormal_frame_time(delta_t):
-				print "*** delta_t outside tolerance (%.5f); repairing..." % delta_t
+				###print "*** delta_t outside tolerance (%.5f); repairing..." % delta_t
 				repaired_v = self._repair_data_point((t,v))
 				self._participant_velocity_data[t] = repaired_v
 			prev_t = t
@@ -189,10 +189,10 @@ class TrialParticipant():
 			for t, v in surrounding_points:
 				total_velocity += v
 			mean_velocity = total_velocity / len(surrounding_points)
-			print "\t-->velocity was %.5f and was reset to %.5f" % (data_point[1], mean_velocity)
+			###print "\t-->velocity was %.5f and was reset to %.5f" % (data_point[1], mean_velocity)
 			return mean_velocity
 			
-		print "\tcouldn't repair! (not enough valid surrounding data points)"
+		###print "\tcouldn't repair! (not enough valid surrounding data points)"
 		return data_point[1]
 		
 	
@@ -299,8 +299,8 @@ class TrialParticipant():
 			
 			# Check that this velocity is reasonable
 			if v < -FAST_HUMAN_RUN_SPEED:
-				print "WARNING: That velocity (", v, ") is ridiculous."
-				print "Something probably went wrong; disregarding this velocity"
+				print( "WARNING: That velocity (", v, ") is ridiculous.")
+				print( "Something probably went wrong; disregarding this velocity")
 			else:
 				if v < min_vel:
 					min_vel = v
@@ -321,8 +321,8 @@ class TrialParticipant():
 			
 			# Check if the speed is attainable (check required b/c of a glitch in the system)
 			if v > FAST_HUMAN_RUN_SPEED:
-				print "WARNING: That velocity (", v, ") is ridiculous."
-				print "Something probably went wrong; disregarding this velocity"
+				print ("WARNING: That velocity (", v, ") is ridiculous.")
+				print ("Something probably went wrong; disregarding this velocity")
 			else:
 				if v > max_vel:
 					max_vel = v
@@ -342,8 +342,8 @@ class TrialParticipant():
 			t = self._position_data[i][PositionData.TIME]
 			v = self._participant_velocity_data[t]
 			if math.fabs(v) > FAST_HUMAN_RUN_SPEED:
-				print "WARNING: That velocity (", v, ") is ridiculous."
-				print "Something probably went wrong; disregarding this velocity"
+				print( "WARNING: That velocity (", v, ") is ridiculous.")
+				print ("Something probably went wrong; disregarding this velocity")
 			else:
 				total_vel += v
 			
@@ -420,7 +420,7 @@ class TrialParticipant():
 		if not self.__memoizedData[MEMO_INDEX_BEFORE_LAST_ENTER_ROAD]:
 			self.__memoizedData[MEMO_INDEX_BEFORE_LAST_ENTER_ROAD] = self._get_moment_last_crossed_z_value(ROAD_START_Z)
 		
-#		print "MOMENT LAST ENTERED ROAD = ", self.__memoizedData[MEMO_INDEX_BEFORE_LAST_ENTER_ROAD]
+#		###print "MOMENT LAST ENTERED ROAD = ", self.__memoizedData[MEMO_INDEX_BEFORE_LAST_ENTER_ROAD]
 		return self.__memoizedData[MEMO_INDEX_BEFORE_LAST_ENTER_ROAD]
 
 
@@ -469,7 +469,7 @@ class TrialParticipant():
 		MAX_FULL_CHECK_ANGLE_RIGHT = 180 - FULL_CHECK_ANGLE_RIGHT
 		MAX_PARTIAL_CHECK_ANGLE_RIGHT = 180 - PARTIAL_CHECK_ANGLE_RIGHT
 		
-		#print "PC_R: %s, FC_R: %s" % (PARTIAL_CHECK_ANGLE_RIGHT, FULL_CHECK_ANGLE_RIGHT)
+		####print "PC_R: %s, FC_R: %s" % (PARTIAL_CHECK_ANGLE_RIGHT, FULL_CHECK_ANGLE_RIGHT)
 		
 		if abs(current_pitch) >= Globals.checkMaxAnglePitch:
 			checking_state = CheckingState.NO_CHECKING		
@@ -490,6 +490,6 @@ class TrialParticipant():
 		else:
 			checking_state = CheckingState.NO_CHECKING
 			
-		#print "yaw: %s state: %s" %(current_yaw, CheckingState.toStr(checking_state))
+		####print "yaw: %s state: %s" %(current_yaw, CheckingState.toStr(checking_state))
 
 		return checking_state

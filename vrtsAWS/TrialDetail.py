@@ -92,8 +92,8 @@ class TrialDetail:
 		trial_cars = self.get_trial_cars(direction)
 		pos_data = self._participant.get_position_data()
 		
-#		print "  first posn point:", pos_data[0]
-#		print "  last posn point:", pos_data[-1]
+#		###print "  first posn point:", pos_data[0]
+#		###print "  last posn point:", pos_data[-1]
 		
 		was_in_car_path = False			# For car path entrance/exit details
 		in_car_path = False
@@ -138,7 +138,7 @@ class TrialDetail:
 		for t in sorted_keys:
 			closest_car = self._get_closest_car_to_participant_at_time(t, direction)
 			self._closest_car_dict[t] = closest_car
-#			print "  closest car at t=%s = %s" % (t, closest_car.get_viz_node_id())
+#			###print "  closest car at t=%s = %s" % (t, closest_car.get_viz_node_id())
 			if closest_car != None:
 				print("Closest Car Direction", closest_car.get_direction())		
 					
@@ -153,13 +153,13 @@ class TrialDetail:
 				# If the kid is in the road when the first car passes, most of the measure values will be useless
 				# only check the very first time that the car passes
 				if is_first_time_car_passed:
-					#print "FIRST TIME A CAR PASSED"
+					####print "FIRST TIME A CAR PASSED"
 					if self._participant.get_z_position(t) > ROAD_START_Z_VALUE:
-						#print "KID IN THE ROAD"
+						####print "KID IN THE ROAD"
 						self._entered_before_first_car = True
 						return None
 					else:
-						#print "KID NOT IN THE ROAD"
+						####print "KID NOT IN THE ROAD"
 						is_first_time_car_passed = False
 				
 			
@@ -189,8 +189,8 @@ class TrialDetail:
 			was_checking_state = checking_state
 			checking_state = participant_dict.get(t).get_checking_state()
 
-			#print "t: %s inRoad: %s inCP: %s checking_state: %s checking_moments: %s" % (t, in_road, in_car_path, CheckingState.toStr(checking_state), checking_moments)
-			#print "t: %s, pos: %s, in_road=%s, car_near_z= %s, car_far_z= %s" % (t, self._participant.get_position(t), in_road, closest_car.get_close_side_z(t), closest_car.get_far_side_z(t))
+			####print "t: %s inRoad: %s inCP: %s checking_state: %s checking_moments: %s" % (t, in_road, in_car_path, CheckingState.toStr(checking_state), checking_moments)
+			####print "t: %s, pos: %s, in_road=%s, car_near_z= %s, car_far_z= %s" % (t, self._participant.get_position(t), in_road, closest_car.get_close_side_z(t), closest_car.get_far_side_z(t))
 
 			# HITS
 			
@@ -217,21 +217,21 @@ class TrialDetail:
 							is_being_hit = True
 							is_being_hit_car_id = trial_car.get_viz_node_id()
 							has_been_hit = True													
-							print "HIT HERE: ", self._participant.get_moment(t)
+							###print "HIT HERE: ", self._participant.get_moment(t)
 							self._hits.append(self._participant.get_moment(t))
 							break
 								
 			if not was_in_road and in_road:
-#				print "ENTERED ROAD AT t=%s" %(t)
-#				print "\tand the index is...", sorted_keys.index(t)
-				#print "checking_moments = %s" % checking_moments
+#				###print "ENTERED ROAD AT t=%s" %(t)
+#				###print "\tand the index is...", sorted_keys.index(t)
+				####print "checking_moments = %s" % checking_moments
 
 				road_detail = PathDetail(t, participant_direction)
 				road_detail.set_enter_index(sorted_keys.index(t))
 				road_detail_saved = False
 				
 			if not in_near_lane and was_in_near_lane:
-				print "EXITED NEAR LANE AT t=%s" %(t)
+				###print "EXITED NEAR LANE AT t=%s" %(t)
 				road_detail.set_exit_near_lane_time(t)
 				road_detail.set_exit_near_lane_index(sorted_keys.index(t)) #make sure this is the FIRST time the participant exits the near lane.
 				road_detail_saved = False #NOT SURE THIS LINE IS NECESSARY?
@@ -245,13 +245,13 @@ class TrialDetail:
 					percent_looking = float((checking_state_counter[CheckingState.FULL_CHECKING_LEFT])) / checking_moments
 				except ZeroDivisionError:
 					percent_looking = 0
-				#print "pct looking sidewalk = %s, (%s / %s)" %(str(percent_looking), str(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]), str(checking_moments))
+				####print "pct looking sidewalk = %s, (%s / %s)" %(str(percent_looking), str(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]), str(checking_moments))
 				percent_checking_list[PercentChecking.ON_SIDEWALK] = percent_looking
 				checking_moments = 0
 				checking_state_counter = [0,0,0,0,0]
 				
 			if not in_road and was_in_road:
-				#print "EXITED ROAD AT i=%s" %(t)
+				####print "EXITED ROAD AT i=%s" %(t)
 				road_detail.set_exit_time(t)
 				road_detail.set_exit_direction(participant_direction)
 				road_detail.set_exit_index(sorted_keys.index(t))
@@ -263,20 +263,20 @@ class TrialDetail:
 				percent_looking = float(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]) / checking_moments
 				percent_checking_list[PercentChecking.IN_ROAD] = percent_looking
 				self._percent_checking.append(percent_checking_list)
-				#print "pct looking road = %s, (%s / %s)" %(str(percent_looking), str(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]), str(checking_moments))
-				#print "APPENDED: ", percent_checking_list
+				####print "pct looking road = %s, (%s / %s)" %(str(percent_looking), str(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]), str(checking_moments))
+				####print "APPENDED: ", percent_checking_list
 				checking_moments = 0
 				checking_state_counter = [0,0,0,0,0]
 				percent_checking_list = [0,0]
 			
 			if not was_in_car_path and in_car_path:
-				#print "ENTERED CAR PATH AT t=%s, in_car_path=%s" %(t, in_car_path)
+				####print "ENTERED CAR PATH AT t=%s, in_car_path=%s" %(t, in_car_path)
 				car_path_detail = PathDetail(t, participant_direction)
 				car_path_detail.set_enter_index(sorted_keys.index(t))
 				car_path_detail_saved = False
 
 			if not in_car_path and was_in_car_path and not has_been_hit:
-				#print "LEFT CAR PATH AT t=%s, in_car_path=%s" % (t, in_car_path)
+				####print "LEFT CAR PATH AT t=%s, in_car_path=%s" % (t, in_car_path)
 				# exited the car's path
 				car_path_detail.set_exit_time(t)
 				car_path_detail.set_exit_index(sorted_keys.index(t))
@@ -286,14 +286,14 @@ class TrialDetail:
 				car_path_detail_saved = True
 				
 			if not was_between_car_paths and between_car_paths and not has_been_hit:
-				print "ENTERED ZONE BETWEEN CAR PATHS AT t=%s, between_car_path=%s" % (t, between_car_paths)
+				###print "ENTERED ZONE BETWEEN CAR PATHS AT t=%s, between_car_path=%s" % (t, between_car_paths)
 				between_car_path_detail = PathDetail(t, participant_direction)
 				between_car_path_detail.set_enter_time(t)
 				between_car_path_detail.set_enter_index(sorted_keys.index(t))
 				between_car_path_detail_saved = False
 				
 			if not between_car_paths and was_between_car_paths and not has_been_hit:
-				print "EXITED ZONE BETWEEN CAR PATHS AT t=%s, between_car_path=%s" % (t, between_car_paths)
+				###print "EXITED ZONE BETWEEN CAR PATHS AT t=%s, between_car_path=%s" % (t, between_car_paths)
 				between_car_path_detail.set_exit_time(t)
 				between_car_path_detail.set_exit_index(sorted_keys.index(t))
 				between_car_path_detail.set_exit_direction(participant_direction)
@@ -302,15 +302,15 @@ class TrialDetail:
 				between_car_path_detail_saved = True
 			
 			# Increment the checking count for their current state
-			#print "at t=%s, checking_moments=%s" %(t, checking_moments)
+			####print "at t=%s, checking_moments=%s" %(t, checking_moments)
 			checking_moments += 1
 			checking_state_counter[checking_state] +=1
 
 		# Save unsaved % checking data
 		if checking_moments > 1: 
 			percent_looking = float((checking_state_counter[CheckingState.FULL_CHECKING_LEFT])) / checking_moments
-			#print "CHECKING_STATE_COUNTERS:", checking_state_counter
-			#print "FC: %s, total moments: %s, pct looking: %s" %(str(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]), str(checking_moments), str(percent_looking))
+			####print "CHECKING_STATE_COUNTERS:", checking_state_counter
+			####print "FC: %s, total moments: %s, pct looking: %s" %(str(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]), str(checking_moments), str(percent_looking))
 			if in_road:
 				percent_checking_list[PercentChecking.IN_ROAD] = percent_looking
 			else:
@@ -318,30 +318,30 @@ class TrialDetail:
 				percent_checking_list[PercentChecking.IN_ROAD] = 0
 				
 			self._percent_checking.append(percent_checking_list)
-			#print "FINALLY APPENDED: %s, (list size: %s) " % (percent_checking_list, str(len(self._percent_checking)))
+			####print "FINALLY APPENDED: %s, (list size: %s) " % (percent_checking_list, str(len(self._percent_checking)))
 
 		# Save any car_path_detail or road_detail objects that weren't saved (op intervention, hit)
 		if not road_detail_saved:
-#			print "SAVING UNFINISHED ROAD ENTRANCE"
+#			###print "SAVING UNFINISHED ROAD ENTRANCE"
 			last_time = sorted(participant_dict.iterkeys())[-1]
 			road_detail.set_duration(last_time - road_detail.get_enter_time())
 			self._road_details.append(road_detail)
 			
 		if not car_path_detail_saved:
-#			print "SAVING UNFINISHED CAR PATH DETAIL"
+#			###print "SAVING UNFINISHED CAR PATH DETAIL"
 			last_time = sorted(participant_dict.iterkeys())[-1]
 			car_path_detail.set_duration(last_time - car_path_detail.get_enter_time())
 			self._car_path_details.append(car_path_detail)
 			
 		if not between_car_path_detail_saved:
-			print "SAVING UNFINISHED BETWEEN CAR PATHS DETAIL"
+			###print "SAVING UNFINISHED BETWEEN CAR PATHS DETAIL"
 			last_time = sorted(participant_dict.iterkeys())[-1]
 			between_car_path_detail.set_duration(last_time - car_path_detail.get_enter_time())
 			self._between_car_path_detail.append(between_car_path_detail)
 		
-#		print "CAR PATH DETAILS = %s" % [str(x) for x in self._car_path_details]
-#		print "ROAD DETAILS = %s" % [str(x) for x in self._road_details]
-#		print "HITS = %s" % [str(x) for x in self._hits]
+#		###print "CAR PATH DETAILS = %s" % [str(x) for x in self._car_path_details]
+#		###print "ROAD DETAILS = %s" % [str(x) for x in self._road_details]
+#		###print "HITS = %s" % [str(x) for x in self._hits]
 
 	def get_trial_result(self):
 		''' Return Enums.TrialResult depending on the result of the trial '''
@@ -388,7 +388,7 @@ class TrialDetail:
 			total_velocity += participant.get_velocity(t)
 		
 		mean_velocity = total_velocity / len(in_road_times)
-		#print "MEAN WALKING SPEED = %s" % mean_velocity
+		####print "MEAN WALKING SPEED = %s" % mean_velocity
 		return mean_velocity
 
 	
@@ -437,10 +437,10 @@ class TrialDetail:
 			if closest_car.get_viz_node_id() != previous_car.get_viz_node_id():
 				gap = self._get_gap(closest_car, previous_car, t)
 
-				#print "FOUND GAP = %s" % gap.get_length()
-				#print "  t=%s" % t
-				#print "  PREV car = %s" % previous_car.get_viz_node_id()
-				#print "  NEXT car = %s" % closest_car.get_viz_node_id()
+				####print "FOUND GAP = %s" % gap.get_length()
+				####print "  t=%s" % t
+				####print "  PREV car = %s" % previous_car.get_viz_node_id()
+				####print "  NEXT car = %s" % closest_car.get_viz_node_id()
 				
 				if gap is not None:
 					self._gaps.append(gap)
@@ -458,7 +458,7 @@ class TrialDetail:
 			next_car_front_bumper_x = next_car.get_front_bumper_x(t)
 			gap_length = abs(prev_car_rear_bumper_x - next_car_front_bumper_x)
 		except:
-			print "Warning: gap times do not match - ignoring this gap ( t =",t,")"
+			###print "Warning: gap times do not match - ignoring this gap ( t =",t,")"
 			return None
 		
 		#distance = vizmat.Distance(next_car.get_position(t), previous_car.get_position(t))
@@ -475,7 +475,7 @@ class TrialDetail:
 		''' Return the path details corresponding to when the participant entered the road moving forward. '''
 		forward_moving_road_details = []
 		for road_detail in self._road_details:
-			#print "  road deet:", road_detail
+			####print "  road deet:", road_detail
 			if road_detail.get_enter_direction() == ParticipantDirection.FORWARD:
 				forward_moving_road_details.append(road_detail)
 				
@@ -583,9 +583,9 @@ class TrialDetail:
 		''' Return the closest car to the participant at time t: used when objectifying raw data. '''
 		participant_x = self._participant.get_x_position(t)
 		trial_cars = self.get_trial_cars(direction)
-		#print "t=%s" % (t)
+		####print "t=%s" % (t)
 		trial_car = trial_cars.get_next_to_x_at_t(participant_x, t)
-		#print "  CLOSEST CAR AT t=%s is %s" % (t, trial_car)
+		####print "  CLOSEST CAR AT t=%s is %s" % (t, trial_car)
 		return trial_car
 		
 	def get_previous_car_at_time(self, t, direction):

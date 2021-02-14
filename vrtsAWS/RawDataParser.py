@@ -7,8 +7,8 @@ from TrialDetail import TrialDetail
 
 import os
 import logging
-#import pickle
-import cPickle as pickle
+import pickle
+#import cPickle as pickle
 #import vizmat
 import math
 import time
@@ -171,14 +171,14 @@ class RawDataParser(BaseDataParser):
 		''' Return output for the trials formatted for SPSS. '''
 
 		if not self.__trialsDataDictionary:
-			print "PARSING TRIALS BEFORE GENERATING SPSS OUTPUT (participant: %s timestamp: %s)" % (self._participant_session.get_participant_id(), self._participant_session.get_timestamp())
+			###print "PARSING TRIALS BEFORE GENERATING SPSS OUTPUT (participant: %s timestamp: %s)" % (self._participant_session.get_participant_id(), self._participant_session.get_timestamp())
 			self.parseTrials()
 			
 		var_list = VariableNames.get_var_names_list()
 		spss_lines = []
 
 		for participant_trial in self.__trialsDataDictionary:
-			print "\n" + "Trial Information " + "Trial Type: " + participant_trial.get_trial_cond() + " PRE/POST: " + participant_trial.get_trial_prepost() +  "\n" + "\n"
+			###print "\n" + "Trial Information " + "Trial Type: " + participant_trial.get_trial_cond() + " PRE/POST: " + participant_trial.get_trial_prepost() +  "\n" + "\n"
 			trial_dict = self.__trialsDataDictionary[participant_trial]
 			
 			road_entrance_lines = self._get_road_entrance_lines(participant_trial, trial_dict)
@@ -203,7 +203,7 @@ class RawDataParser(BaseDataParser):
 			trialDataDictionary = {}
 
 			# Load the trial data
-			print "Trial %s (%s)" % (participant_trial.get_trial_and_attempt_number(), participant_trial.get_filename())
+			###print "Trial %s (%s)" % (participant_trial.get_trial_and_attempt_number(), participant_trial.get_filename())
 			raw_data = participant_trial.get_raw_data()
 			trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
 			
@@ -230,7 +230,7 @@ class RawDataParser(BaseDataParser):
 			trialDataDictionary[VariableNames.TrialResult] = trial_result
 
 			if trial_result == TrialResult.ENTERED_BEFORE_FIRST_CAR:
-				#print "ENTERED BEFORE FIRST CAR"
+				####print "ENTERED BEFORE FIRST CAR"
 				self.__trialsDataDictionary[participant_trial] = trialDataDictionary
 				continue
 
@@ -499,13 +499,13 @@ class RawDataParser(BaseDataParser):
 				previousMoment = positionData[i-1]
 				velocity_z = super(RawDataParser, self).calculateParticipantMomentaryVelocityZ(previousMoment, moment)
 				
-				#print "JB: velocity_z = %s, round(vel_z, 2) = %s " % (str(velocity_z), str(round(velocity_z, 1)))
+				####print "JB: velocity_z = %s, round(vel_z, 2) = %s " % (str(velocity_z), str(round(velocity_z, 1)))
 
 				if (movingBackward == False):
 					# if the participant moved backwards, add a jump back
 					# and wait for them to move forward again
 					if (velocity_z < -VELOCITY_THRESHOLD):
-						print "JUMPED BACK"
+						###print "JUMPED BACK"
 						jumpBacks += 1
 						movingBackward = True
 				else:
@@ -516,7 +516,7 @@ class RawDataParser(BaseDataParser):
 						
 				# if get_closest_car fails (which should be rare), fail this calculation gracefully
 				if trialData.get_closest_car(t, Direction.RIGHT) == None:
-					print "Warning: (calculateJumpBacks) could not find closest car - stopping JumpBack calculation"
+					###print "Warning: (calculateJumpBacks) could not find closest car - stopping JumpBack calculation"
 					self.__logger.info("Warning: (calculateJumpBacks) could not find closest car - stopping JumpBack calculation")
 					return NO_VALUE_NUM
 					
@@ -551,7 +551,7 @@ class RawDataParser(BaseDataParser):
 		return re_durations
 		
 	def calculateDurationInMiddleOfRoad(self,trialData):
-		#print "Enter calculateDurationInMiddleOfRoad"
+		####print "Enter calculateDurationInMiddleOfRoad"
 		''' Get a list of the road durations for each road entrance '''
 		#### --- Duration in Road
 		road_entrances = trialData.get_between_car_path_details()
@@ -660,7 +660,7 @@ class RawDataParser(BaseDataParser):
 			#total_time = exit_time - enter_time
 			in_road_times = [t for t in sorted(participant.get_participant_dict()) if t >= enter_time and t < exit_time]
 			num_keys = len(in_road_times)
-			#print "IN ROAD KEYS: ", in_road_times
+			####print "IN ROAD KEYS: ", in_road_times
 			
 			for t in in_road_times:
 				yaw = participant.get_moment(t).get_yaw()
@@ -693,7 +693,7 @@ class RawDataParser(BaseDataParser):
 		num_keys = len(in_car_path_times)
 		# fail gracefully if there are no keys (shouldn't happen under normal operation)
 		if num_keys < 1:
-			print "Warning: (mean_head_angle_in_car_path) no time in car path - cannot calculate"
+			###print "Warning: (mean_head_angle_in_car_path) no time in car path - cannot calculate"
 			self.__logger.info("Warning: (mean_head_angle_in_car_path) no time in car path - cannot calculate")
 			return NO_VALUE_NUM
 		
@@ -733,17 +733,17 @@ class RawDataParser(BaseDataParser):
 		in_car_path_times = [t for t in sorted(participant.get_participant_dict().iterkeys()) if t >= enter_time and t < exit_time]
 		num_keys = len(in_car_path_times)
 		if num_keys < 1:
-			print "Warning: (percent_checking_in_car_path) no time in car path - cannot calculate"
+			###print "Warning: (percent_checking_in_car_path) no time in car path - cannot calculate"
 			self.__logger.info("Warning: (percent_checking_in_car_path) no time in car path - cannot calculate")
 			return NO_VALUE_NUM
 			
 		for t in in_car_path_times:
 			checking_state_counter[participant.get_moment(t).get_checking_state()] += 1
-			#print "IN CAR PATH: t: %s, state %s" % (t, CheckingState.toStr(participant.get_moment(t).get_checking_state()))
+			####print "IN CAR PATH: t: %s, state %s" % (t, CheckingState.toStr(participant.get_moment(t).get_checking_state()))
 		
 		percent_full_checking = float(checking_state_counter[CheckingState.FULL_CHECKING_LEFT]) / num_keys
 		
-		#print "PERCENT FULL CHECKING IN CAR PATH: %s (%s / %s)" % (percent_full_checking, checking_state_counter[CheckingState.FULL_CHECKING_LEFT], num_keys)
+		####print "PERCENT FULL CHECKING IN CAR PATH: %s (%s / %s)" % (percent_full_checking, checking_state_counter[CheckingState.FULL_CHECKING_LEFT], num_keys)
 		
 		return percent_full_checking 
 
@@ -868,7 +868,7 @@ class RawDataParser(BaseDataParser):
 		path_detail = trialData.get_last_enter_car_path_detail(ParticipantDirection.FORWARD)
 		if not path_detail:
 			self.__logger.info("MeanVelocityInCarPath: Can't calculate, never entered a car's path.")
-			#print "MeanVelocityInCarPath: Can't calculate, never entered a car's path."
+			####print "MeanVelocityInCarPath: Can't calculate, never entered a car's path."
 			#return None
 			return NO_VALUE_NUM
 			
@@ -878,7 +878,7 @@ class RawDataParser(BaseDataParser):
 			exit_time = trialData.get_last_time()
 		
 		mean_vel = trialData.get_participant().get_mean_velocity(enter_time, exit_time)
-		#print "MEAN VEL: ", mean_vel
+		####print "MEAN VEL: ", mean_vel
 		
 		return mean_vel
 		
@@ -1115,22 +1115,22 @@ class RawDataParser(BaseDataParser):
 		if not all(right_checks):
 			return [NO_VALUE_NUM]
 		last_entry_between_car_path_detail = trial_data.get_last_enter_between_car_path_detail(ParticipantDirection.FORWARD)
-		print "last_entry_between_car_path_detail", last_entry_between_car_path_detail
+		###print "last_entry_between_car_path_detail", last_entry_between_car_path_detail
 		if last_entry_between_car_path_detail is None:
-			print "NEVER ENTERED BETWEEN CAR PATHS"
+			###print "NEVER ENTERED BETWEEN CAR PATHS"
 			return [NO_VALUE_NUM]
 		last_entry_time = last_entry_between_car_path_detail.get_enter_time()
-		print "RIGHT CHECKS", right_checks
+		###print "RIGHT CHECKS", right_checks
 
 		checking_on_entry = False
 		for right_check in right_checks:
-			print "RIGHT CHECK", right_check
+			###print "RIGHT CHECK", right_check
 			check_start_time = right_check[-1][0]
 			check_end_time = right_check[-1][1]
 			if check_start_time <= last_entry_time <= check_end_time:
 				checking_on_entry = True
 		
-		print "Checking on entry: ", checking_on_entry
+		###print "Checking on entry: ", checking_on_entry
 		return checking_on_entry
 ####
 	
@@ -2034,7 +2034,7 @@ class RawDataParser(BaseDataParser):
 					checks = self._get_times_with_closest_left_facing_car_in_view(trial_data, start_index, end_index, direction)
 				elif direction == Direction.RIGHT: 
 					checks = self._get_times_with_closest_right_facing_car_in_view(trial_data, start_index, end_index, direction)
-					#print "Has gone " , self._get_times_with_closest_car_in_view_middle_road(trial_data, start_index, end_index, direction)
+					####print "Has gone " , self._get_times_with_closest_car_in_view_middle_road(trial_data, start_index, end_index, direction)
 					# otherwise, return 9999
 				else:
 					checks = NO_VALUE_NUM
@@ -2504,7 +2504,7 @@ class RawDataParser(BaseDataParser):
 			participant_x = trialData.get_participant().get_x_position(exit_car_path_time)
 			next_car_arrival_time = trial_car.get_time_from_x(exit_car_path_time, participant_x)
 			if next_car_arrival_time < 1:
-				#print "NEAR MISS at t=%s" % next_car_arrival_time
+				####print "NEAR MISS at t=%s" % next_car_arrival_time
 				near_misses[trial_car.get_viz_node_id()] = (next_car_arrival_time, None) #near_misses = {car_id: (Time, Distance)}
 		
 		# Calculate near misses in distance
@@ -2516,7 +2516,7 @@ class RawDataParser(BaseDataParser):
 		for t in sorted(participant_dict.iterkeys()):
 			closest_car = trialData.get_closest_car(t, direction)
 			if (closest_car is None):
-				#print "Warning: (_calculate_near_misses) could not find closest car - discontinuing"
+				####print "Warning: (_calculate_near_misses) could not find closest car - discontinuing"
 				#self.__logger.info("Warning: (_calculate_near_misses) could not find closest car - discontinuing")
 				#return {}
 				continue
@@ -2546,19 +2546,19 @@ class RawDataParser(BaseDataParser):
 					closest_distance = distance_to_car
 			elif (distance_to_car >= 1 and is_near_missing == True):
 				# Not near missing anymore, so append the near miss closest distance --> only one near miss per car
-#				print "NEAR MISS DISTANCE = %s" % closest_distance
+#				###print "NEAR MISS DISTANCE = %s" % closest_distance
 				if near_missing_car_id not in near_misses.keys():
 					near_misses[near_missing_car_id] = (None, closest_distance)
 				else:
-#					print "ALREADY ADDED A NEAR MISS FOR car_id = %s " % (car_id)
+#					###print "ALREADY ADDED A NEAR MISS FOR car_id = %s " % (car_id)
 					existing = near_misses[near_missing_car_id]
 					near_misses[near_missing_car_id] = (existing[0], closest_distance)
 				is_near_missing = False
 				closest_distance = 1
 		
-#		print "NEAR MISSES"
+#		###print "NEAR MISSES"
 #		for k in near_misses:
-#			print "car=", k, near_misses[k]
+#			###print "car=", k, near_misses[k]
 			
 		return near_misses
 
@@ -2591,7 +2591,7 @@ class RawDataParser(BaseDataParser):
 		#TODO: Should we pass in direction to all the get_last_*** functions?
 		car_path_detail = trialData.get_last_enter_car_path_detail(ParticipantDirection.FORWARD)
 		if car_path_detail is None:
-			print "S1"
+			###print "S1"
 			self.__logger.info("StartDelay: Can't calculate start delay, participant never entered a car's path.")
 			#return None
 			return NO_VALUE_NUM
@@ -2600,7 +2600,7 @@ class RawDataParser(BaseDataParser):
 		
 		previous_car = trialData.get_previous_car_at_time(enter_car_path_time, direction)
 		if previous_car is None:
-			print "S2"
+			###print "S2"
 			self.__logger.info("StartDelay: Can't calculate start delay, no car had passed when the child crossed.")
 			#return None
 			return NO_VALUE_NUM
@@ -2637,11 +2637,11 @@ class RawDataParser(BaseDataParser):
 			return NO_VALUE_NUM
 		tls = trial_car.get_time_from_x(t, x)
 
-#		print "TLS ENTER ROAD"
-#		print "  enter:", road_detail.get_enter_time()
-#		print "  exit:", road_detail.get_exit_time()
-#		print "  Closest car = %s" % trial_car.get_viz_node_id()
-#		print "  TLS = %s" % tls
+#		###print "TLS ENTER ROAD"
+#		###print "  enter:", road_detail.get_enter_time()
+#		###print "  exit:", road_detail.get_exit_time()
+#		###print "  Closest car = %s" % trial_car.get_viz_node_id()
+#		###print "  TLS = %s" % tls
 
 		return tls
 	
@@ -2673,11 +2673,11 @@ class RawDataParser(BaseDataParser):
 
 		tls = trial_car.get_time_from_x(t, x)
 
-#		print "TLS ENTER CAR PATH"
-#		print "  enter:", car_path_detail.get_enter_time()
-#		print "  exit:", car_path_detail.get_exit_time()
-#		print "  Closest car = %s" % trial_car.get_viz_node_id()
-#		print "  TLS = %s" % tls
+#		###print "TLS ENTER CAR PATH"
+#		###print "  enter:", car_path_detail.get_enter_time()
+#		###print "  exit:", car_path_detail.get_exit_time()
+#		###print "  Closest car = %s" % trial_car.get_viz_node_id()
+#		###print "  TLS = %s" % tls
 
 		return tls
 
@@ -2697,7 +2697,7 @@ class RawDataParser(BaseDataParser):
 			#return None
 			return NO_VALUE_NUM
 #		else:
-#			print "Exit CP at t=%s" % car_path_detail.get_exit_time()
+#			###print "Exit CP at t=%s" % car_path_detail.get_exit_time()
 		
 		t = car_path_detail.get_exit_time()
 		x = trialData.get_participant().get_x_position(t)
@@ -2726,38 +2726,38 @@ class RawDataParser(BaseDataParser):
 		"""
 		# can't do the calculation without these values, so bail out
 		if mean_walking_speed == NO_VALUE_NUM:
-			print "TLS@AVGSPEED: have no mean walking speed for this participant, unable to calculate"
+			###print "TLS@AVGSPEED: have no mean walking speed for this participant, unable to calculate"
 			return NO_VALUE_NUM
 		last_entered_road = trial_detail.get_moment_last_entered_road()
 		if not last_entered_road:
-			print "TLS@AVGSPEED: participant never entered the road, returning NO_VALUE_NUM"
+			###print "TLS@AVGSPEED: participant never entered the road, returning NO_VALUE_NUM"
 			return NO_VALUE_NUM
 			
 		# we need the last time they exited a car path going forward
 		car_path_details = trial_detail.get_car_path_details()
 		forward_cp_exits = [cp for cp in car_path_details if cp.get_exit_direction() == ParticipantDirection.FORWARD]
 		if not forward_cp_exits:
-			print "TLS@AVGSPEED: participant never exited a car path, returning NO_VALUE_NUM"
+			###print "TLS@AVGSPEED: participant never exited a car path, returning NO_VALUE_NUM"
 			return NO_VALUE_NUM
 		last_exit_path = max(forward_cp_exits, key=lambda cp: cp.get_exit_time())
 		
 		# this could happen with multiple road entries in which they didn't exit a cp on last
 		if last_exit_path.get_exit_time() < last_entered_road.get_time():
-			print "TLS@AVGSPEED: last car path exit {0} came before last road entry {1}, returning NO_VALUE_NUM".format(
-				last_exit_path.get_exit_time(), last_entered_road.get_time())
+			###print "TLS@AVGSPEED: last car path exit {0} came before last road entry {1}, returning NO_VALUE_NUM".format(
+				#last_exit_path.get_exit_time(), last_entered_road.get_time())
 			return NO_VALUE_NUM
 		# this could happen if they loop back before finishing crossing
 		last_enter_path = trial_detail.get_moment_last_entered_car_path()
 		if last_exit_path.get_exit_time() < last_enter_path.get_time():
-			print "TLS@AVGSPEED: last car path exit {0} came before last path entry {1}, returning NO_VALUE_NUM".format(
-				last_exit_path.get_exit_time(), last_enter_path.get_time())
+			###print "TLS@AVGSPEED: last car path exit {0} came before last path entry {1}, returning NO_VALUE_NUM".format(
+				#last_exit_path.get_exit_time(), last_enter_path.get_time())
 			return NO_VALUE_NUM
 		
 		# find the closest car when they entered the car path
 		time_entered_car_path = last_enter_path.get_time()
 		closest_car = trial_detail.get_closest_car(time_entered_car_path, Direction.RIGHT)
 		if not closest_car:
-			print "TLS@AVGSPEED: no closest car found, returning NO_VALUE_NUM"
+			###print "TLS@AVGSPEED: no closest car found, returning NO_VALUE_NUM"
 			return NO_VALUE_NUM
 		
 		# find what time the participant would have exited the car path given avg speed and when they entered
@@ -2993,7 +2993,7 @@ class RawDataParser(BaseDataParser):
 		return (rightGapLength, leftGapLength, None)
 	
 	def __calculate_gap_length(self, trialData, direction):
-#		print "*** CALC GAP LENGTH ***"
+#		###print "*** CALC GAP LENGTH ***"
 		gap_length = None
 		car_path_detail = trialData.get_last_enter_car_path_detail(ParticipantDirection.FORWARD)
 		if car_path_detail is None:
@@ -3012,7 +3012,7 @@ class RawDataParser(BaseDataParser):
 		if previous_car is None or next_car is None:
 			self.__logger.info("Gap Length: Can't calculate, no cars passed or there's no next car.")
 			if direction == Direction.RIGHT:
-				print "Warning: Cannot calculate gap length, no cars passed or there's no next car."
+				print( "Warning: Cannot calculate gap length, no cars passed or there's no next car.")
 			#return None
 			return NO_VALUE_NUM
 		
@@ -3030,13 +3030,13 @@ class RawDataParser(BaseDataParser):
 		return (rightGapInterval, leftGapInterval, None)
 	
 	def __calculate_gap_interval(self, trialData, direction):
-#		print "*** CALC GAP INTERVAL "
+#		###print "*** CALC GAP INTERVAL "
 		
 		gap_length = None
 		car_path_detail = trialData.get_last_enter_car_path_detail(ParticipantDirection.FORWARD)
 		if car_path_detail is None:
 			self.__logger.info("GapInterval: Can't calculate gap interval, participant never entered into a car's path.")
-			#print "NEVER ENTERED ROAD, can't calc gap length."
+			####print "NEVER ENTERED ROAD, can't calc gap length."
 			#return None
 			return NO_VALUE_NUM
 
@@ -3047,8 +3047,8 @@ class RawDataParser(BaseDataParser):
 		trial_cars = trialData.get_trial_cars(direction)
 		next_car = trial_cars.get_next_to_x_at_t(participant_x, enter_time)
 		
-#		print "NEXT CAR = %s" % next_car
-#		print "ENTER TIME = %s" % enter_time
+#		###print "NEXT CAR = %s" % next_car
+#		###print "ENTER TIME = %s" % enter_time
 		
 		if next_car is None:
 			self.__logger.info("Gap Interval: Cannot calculate gap interval, no next car.")
@@ -3060,7 +3060,7 @@ class RawDataParser(BaseDataParser):
 		if gap_length is None or gap_length is NO_VALUE_NUM:
 			self.__logger.info("Gap Interval: Cannot calculate gap interval, no cars passed.")
 			if direction == Direction.RIGHT:
-				print "Warning: Cannot calculate GapInterval (no value for GapLength)"
+				print( "Warning: Cannot calculate GapInterval (no value for GapLength)")
 			return NO_VALUE_NUM
 		
 		gap_interval = abs(gap_length / next_car_vel)
@@ -3116,15 +3116,15 @@ class RawDataParser(BaseDataParser):
 		tls_enter_car_path = self.__calculate_time_left_to_spare_on_enter_car_path(trialData, direction)
 		tls_exit_car_path = self.__calculate_time_left_to_spare_on_exit_car_path(trialData, direction)
 		if tls_enter_car_path is None or tls_exit_car_path is None:
-#			print "tls_enter_car_path = %s" % tls_enter_car_path
-#			print "tls_exit_car_path = %s" % tls_exit_car_path
-#			print "Could not calculate margin of safety; tls_enter_cp or tls_exit_cp not available."
+#			###print "tls_enter_car_path = %s" % tls_enter_car_path
+#			###print "tls_exit_car_path = %s" % tls_exit_car_path
+#			###print "Could not calculate margin of safety; tls_enter_cp or tls_exit_cp not available."
 			self.__logger.info("Margin of Safety: Could not calculate, participant didn't ever exit a car's path.")
 			#return None
 			return NO_VALUE_NUM
 
-#		print "tls_enter_car_path = %s" % tls_enter_car_path
-#		print "tls_exit_car_path = %s" % tls_exit_car_path
+#		###print "tls_enter_car_path = %s" % tls_enter_car_path
+#		###print "tls_exit_car_path = %s" % tls_exit_car_path
 		
 		if tls_enter_car_path == NO_VALUE_NUM or tls_exit_car_path == NO_VALUE_NUM:
 			self.__logger.info("Margin of Safety: Could not calculate, participant didn't ever exit a car's path.")
@@ -3137,14 +3137,14 @@ class RawDataParser(BaseDataParser):
 		pct_gap_used = None
 		car_path_detail = trialData.get_last_enter_car_path_detail(ParticipantDirection.FORWARD)
 		if car_path_detail is None:
-			#print "NEVER ENTERED car path, can't calculate % gap used."
+			####print "NEVER ENTERED car path, can't calculate % gap used."
 			self.__logger.info("% Gap Used: Could not calculate, participant didn't ever enter a car's gap.")
 			#return None
 			return NO_VALUE_NUM
 
 		enter_time = car_path_detail.get_enter_time()
 		exit_time = car_path_detail.get_exit_time()
-		#print "car path detail = %s" % car_path_detail
+		####print "car path detail = %s" % car_path_detail
 		
 		if exit_time is None:
 			#TODO: need to worry about operator intervention?
@@ -3154,11 +3154,11 @@ class RawDataParser(BaseDataParser):
 		time_in_car_path = exit_time - enter_time
 		gap_interval = self.__calculate_gap_interval(trialData, direction)
 		
-#		print "time in car path = %s" % time_in_car_path
-#		print "gap interval = %s" % gap_interval
+#		###print "time in car path = %s" % time_in_car_path
+#		###print "gap interval = %s" % gap_interval
 		
 		if gap_interval is None:
-			#print "Can't calculate % gap used; gap interval is none."
+			####print "Can't calculate % gap used; gap interval is none."
 			#return None
 			return NO_VALUE_NUM
 
@@ -3172,7 +3172,7 @@ class RawDataParser(BaseDataParser):
 		gap_interval = self.__calculate_gap_interval(trialData, direction)
 		
 		if tls_enter_car_path is NO_VALUE_NUM or gap_interval is None:
-			print "Can't calculate % gap remaining on enter car path."
+			###print "Can't calculate % gap remaining on enter car path."
 			return NO_VALUE_NUM
 		
 		pct_gap_remaining = (tls_enter_car_path / gap_interval) * 100
@@ -3184,9 +3184,9 @@ class RawDataParser(BaseDataParser):
 		gap_interval = self.__calculate_gap_interval(trialData, direction)
 		
 		if tls_exit_car_path is NO_VALUE_NUM or gap_interval is None:
-			print "tls_exit_car_path = %s" % tls_exit_car_path
-			print "gap_interval = %s" % gap_interval
-			print "Can't calculate % gap remaining on exit car path."
+			###print "tls_exit_car_path = %s" % tls_exit_car_path
+			###print "gap_interval = %s" % gap_interval
+			###print "Can't calculate % gap remaining on exit car path."
 			return NO_VALUE_NUM
 		
 		pct_gap_remaining = (tls_exit_car_path / gap_interval) * 100
@@ -3221,12 +3221,12 @@ class RawDataParser(BaseDataParser):
 		avg_rejected_gap_time = 0
 		gaps = trialData.get_gaps(direction)
 		if len(gaps) <= 1:
-#			print "No rejected gaps. Could not calculate average rejected gap time."
+#			###print "No rejected gaps. Could not calculate average rejected gap time."
 			self.__logger.info("Average Rejected Gap Time: no rejected gaps.")
 			#return None
 			return NO_VALUE_NUM
 		
-#		print "gaps = %s" % [str(x) for x in gaps]
+#		###print "gaps = %s" % [str(x) for x in gaps]
 		
 		# the last gap is the gap you crossed in
 		avg_rejected_gap_time = sum(gap.get_gap_time() for gap in gaps[:-1]) / (len(gaps) -1)
@@ -3244,7 +3244,7 @@ class RawDataParser(BaseDataParser):
 		max_gap_length = 0
 		gaps = trialData.get_gaps(direction)
 		if len(gaps) <= 1:
-			#print "No rejected gaps. Could not calculate max rejected gap time."
+			####print "No rejected gaps. Could not calculate max rejected gap time."
 			self.__logger.info("Maximum Rejected Gap Time: Could not calculate max rejected gap time.")
 			#return None
 			return NO_VALUE_NUM
@@ -3384,7 +3384,7 @@ class RawDataParser(BaseDataParser):
 			return None
 		if not between_car_path_entries:
 			for entry in road_entries:
-				print "NO BETWEEN CAR PATH ENTRIES"
+				###print "NO BETWEEN CAR PATH ENTRIES"
 				checks_per_entry.append(None)
 			return checks_per_entry
 		
@@ -3395,7 +3395,7 @@ class RawDataParser(BaseDataParser):
 			checks_this_entry = []
 			
 			if not road_entry_index:
-				print "NO ROAD ENTRY INDEX"
+				###print "NO ROAD ENTRY INDEX"
 				checks_per_entry.append(None)
 				continue
 
@@ -3403,7 +3403,7 @@ class RawDataParser(BaseDataParser):
 			if not road_exit_index:
 				moment_got_hit = trial_data.get_first_hit()
 				if not moment_got_hit:
-					print "DID NOT EXIT THE ROAD"
+					###print "DID NOT EXIT THE ROAD"
 					checks_per_entry.append(None)
 					continue
 				road_exit_index = trial_data.get_participant().get_last_moment().get_index()
@@ -3431,7 +3431,7 @@ class RawDataParser(BaseDataParser):
 							checks = self._get_times_with_closest_right_facing_car_in_view(trial_data, start_index, end_index, direction)
 						# otherwise, return 9999
 						else:
-							print "CAR NOT IN VIEW"
+							###print "CAR NOT IN VIEW"
 							checks = [NO_VALUE_NUM]
 					checks_this_entry.extend(checks)
 					

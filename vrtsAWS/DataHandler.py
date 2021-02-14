@@ -1,6 +1,6 @@
 ﻿import os
 from datetime import datetime
-import cPickle as pickle
+import pickle
 from collections import defaultdict
 from ParticipantSession import ParticipantSession
 from ParticipantTrial import ParticipantTrial
@@ -38,7 +38,9 @@ class DataHandler():
 		
 		# TODO: this won't work unless the PRACTICE, STANDARD, and TIMEPRESSURE trials are done in separate session, as is the case for the pilot.
 		participant_dumped_data_files = filter(lambda x:participant_id in x and timestamp in x and 'dumpedData' in x, file_list)
-		
+		# edit naseem
+		participant_dumped_data_files = [x for x in file_list if  participant_id in x and timestamp in x and 'dumpedData' in x]
+
 		if participant_dumped_data_files:
 			if self._is_practice_trial(participant_dumped_data_files[0]):
 				return Phase.PHASE_III
@@ -97,7 +99,7 @@ class DataHandler():
 				right_facing_car_speed = trial_data.getRightFacingCarSpeed()
 				left_facing_car_speed = trial_data.getLeftFacingCarSpeed()
 			except IndexError:
-				print "ERROR: ENCOUNTERED TRIAL DATA THAT DOES NOT CONTAIN a Trial object."
+				print( "ERROR: ENCOUNTERED TRIAL DATA THAT DOES NOT CONTAIN a Trial object.")
 			
 			trial_and_attempt_number = self._get_trial_and_attempt_number(f, participant_id)
 			trial_number = trial_and_attempt_number[0]
@@ -111,6 +113,9 @@ class DataHandler():
 	
 	def _get_bounding_box_data(self, file_list, participant_id, timestamp, data_dir):
 		bb_data_file = filter(lambda x:participant_id in x and timestamp in x and 'boundingBoxData' in x, file_list)
+		#edit naseem 
+		bb_data_file = [x for x in file_list if participant_id in x and timestamp in x and 'boundingBoxData' in x]
+
 		try:
 			f = open(os.path.join(data_dir, bb_data_file[0]), 'rb')
 			bb_data = pickle.load(f)
@@ -179,9 +184,10 @@ class DataHandler():
 		
 		for participant_id in participant_ids:
 			
-#			print "PARTICIPANT: ", participant_id
+#			###print "PARTICIPANT: ", participant_id
 			participant_data_files = filter(lambda x:x.endswith("participantData.pkl") and participant_id in x, file_list)
-			
+			#### edit naseem
+			participant_data_files = [x for x in file_list if  x.endswith("participantData.pkl") and participant_id in x]
 			# TODO: Hack: need to label the last set of participant trials as time pressure.  Time pressure trials are run last (in the pilot trails).
 			num_sessions = len(participant_data_files)
 			tp_timestamp = self._get_timestamp(max(sorted(participant_data_files, key=self._get_timestamp))) # Still used when the data saved in the OLD format
@@ -211,7 +217,7 @@ class DataHandler():
 				# create a participant session
 				participant_session = ParticipantSession(data_dir, participant_id, timestamp, participant_trials, bounding_box_data, participant_data, phase)
 				
-#				print "SESSION:", participant_session
+#				###print "SESSION:", participant_session
 				
 				participant_sessions[participant_id].append(participant_session)
 

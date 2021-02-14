@@ -24,9 +24,9 @@ class TrialCars:
 		#unique_car_ids = set([car_tuple[CarPositionData.CARID] for car_tuple in self._raw_car_data])
 		unique_id_mesh = set([(car_tuple[CarPositionData.CARMESH], car_tuple[CarPositionData.CARID]) for car_tuple in self._raw_car_data])
 		
-#		print "TRIAL CARS"
+#		###print "TRIAL CARS"
 #		for p in unique_id_mesh:
-#			print "car: ", p
+#			###print "car: ", p
 #		
 		# Create a TrialCar for each of the cars
 		for unique_car_mesh_id in unique_id_mesh:#unique_car_ids:
@@ -43,12 +43,12 @@ class TrialCars:
 			# get TrialCar info from the first tuple
 			try:
 				direction = raw_trial_car_data[0][CarPositionData.CARDIRECTION]
-				#print "d:", direction
+				####print "d:", direction
 				# Some old car data didn't use Enums.Direction, it just had "Right"
 				if direction == "Right":
 					direction = Direction.RIGHT
 			except IndexError:
-				#print "OLD CAR DATA -- assuming Direction.RIGHT"
+				####print "OLD CAR DATA -- assuming Direction.RIGHT"
 				# Old car data didn't have direction -- assume just RFC data
 				direction = Direction.RIGHT
 				
@@ -76,7 +76,7 @@ class TrialCars:
 					bb_data[BoundingBox.XMAX],
 					-temp_zmax,
 					-temp_zmin)
-			#print "CAR ZMIN/ZMAX = ", bb_data[BoundingBox.ZMIN], bb_data[BoundingBox.ZMAX]
+			####print "CAR ZMIN/ZMAX = ", bb_data[BoundingBox.ZMIN], bb_data[BoundingBox.ZMAX]
 			
 		return bb_data		
 		
@@ -107,7 +107,7 @@ class TrialCars:
 		for trial_car in cars:
 			carFrontBumperDistance = trial_car.get_front_bumper_distance_from_x(t, x)
 			
-			#print "   car: %s distance %s" % (trial_car.get_viz_node_id(), carFrontBumperDistance)
+			####print "   car: %s distance %s" % (trial_car.get_viz_node_id(), carFrontBumperDistance)
 			
 			if (direction == Direction.RIGHT):
 				# if car has passed the participant, move on
@@ -144,13 +144,13 @@ class TrialCars:
 			closestDistance = -100000
 		
 		#partPos = self.__get_position_at_time(trialData.get_participant_position_data(), currentTime)
-#		print "*** GET PREVIOUS CAR PASSED"
-#		print "   * time = ", t
+#		###print "*** GET PREVIOUS CAR PASSED"
+#		###print "   * time = ", t
 		
 		for trial_car in cars:
 			#distance = self.__get_distance_from_back_bumper_on_x_axis(partPos, carData)
 			distance = trial_car.get_rear_bumper_distance_from_x(t, x)
-#			print "     * car: %s, rear bumper to x = %s"% (trial_car, distance)
+#			###print "     * car: %s, rear bumper to x = %s"% (trial_car, distance)
 			if (direction == Direction.RIGHT):
 				# distance is negative if the car is still coming, positive if the car has passed
 				if distance < 0:
@@ -171,6 +171,6 @@ class TrialCars:
 					closestDistance = distance
 					last_car_passed = trial_car
 
-#		print "   * last car passed = ", last_car_passed
+#		###print "   * last car passed = ", last_car_passed
 		return last_car_passed
 		

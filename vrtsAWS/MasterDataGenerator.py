@@ -56,7 +56,7 @@ class MasterDataGenerator:
         speed_test_sessions = self._get_speed_test_sessions(
             participant_sessions)
         if len(speed_test_sessions) < 1:
-            print "WARNING: COULD NOT FIND SPEED TEST SESSION(s)"
+            ###print "WARNING: COULD NOT FIND SPEED TEST SESSION(s)"
             return ""
 
         stdp = SpeedTrialDataParser()
@@ -96,19 +96,19 @@ class MasterDataGenerator:
             try:
                 mws_RWV = self._mean_walking_speed_RWV[participant_id]
             except:
-                print "MasterDataGenerator: Warning! Could not find mean walking speed (RWV) under the given participant ID"
+                ###print "MasterDataGenerator: Warning! Could not find mean walking speed (RWV) under the given participant ID"
                 mws_RWV = NO_VALUE_NUM
 
             try:
                 mrs_RWV = self._mean_running_speed_RWV[participant_id]
             except:
-                print "MasterDataGenerator: Warning! Could not find mean running speed (RWV) under the given participant ID "
+                ###print "MasterDataGenerator: Warning! Could not find mean running speed (RWV) under the given participant ID "
                 mrs_RWV = NO_VALUE_NUM
 
             try:
                 mws_HMDV = self._mean_walking_speed[participant_id]
             except:
-                print "MasterDataGenerator: Warning! Could not find mean walking speed (HMDV) under the given participant ID"
+                ###print "MasterDataGenerator: Warning! Could not find mean walking speed (HMDV) under the given participant ID"
                 mws_HMDV = NO_VALUE_NUM
 
             rdp = RawDataParser(participant_session,
@@ -127,8 +127,8 @@ class MasterDataGenerator:
         master_data_file.write(header)
         master_data_file.write("\n")
 
-        print "***"
-        print header
+        print ("***")
+        print (header)
 
         logger.info("attempting to process master data")
 
@@ -140,8 +140,8 @@ class MasterDataGenerator:
                 non_practice_trials_output = self._get_non_practice_trials_output(
                     p_sessions)
 
-                # print "\n".join(s for s in speed_trials_output)
-                print "\n".join(s for s in non_practice_trials_output)
+                # ###print "\n".join(s for s in speed_trials_output)
+                print ("\n".join(s for s in non_practice_trials_output))
 
                # master_data_file.write(
                 #    "\n".join(s for s in speed_trials_output))
@@ -180,5 +180,5 @@ if __name__ == "__main__":
     kwargs['participant_sessions'] = participant_sessions
     mdg = MasterDataGenerator(**kwargs)
     mdg.save_master_data()
-    print "Save complete. Exiting..."
+    print ("Save complete. Exiting...")
     logger.info("master data generator finished and exiting")

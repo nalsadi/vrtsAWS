@@ -28,10 +28,10 @@ class Trial:
 		if (pTrialType != TrialType.NONE): 
 			self.__trialNumber = Trial.number
 			Trial.number += 1
-			#print "yes"
+			####print "yes"
 		else:
 			self.__trialNumber = -1
-			#print "no"
+			####print "no"
 			
 		self.__attemptNumber = pAttemptNumber # the number of times this trial has been attempted
 		self.__trialType = pTrialType
