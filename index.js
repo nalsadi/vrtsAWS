@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const {PythonShell} =require('python-shell'); 
 
 
 const { auth } = require('express-openid-connect');
@@ -29,9 +30,10 @@ app.get('/', (req, res) => {
 const { requiresAuth } = require('express-openid-connect');
 
 app.get('/mdg', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
+  res.render('mdg')
 });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
