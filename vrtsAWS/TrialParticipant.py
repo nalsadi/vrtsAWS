@@ -103,7 +103,7 @@ class TrialParticipant():
 		
 	def _write_velocity_data_to_file(self):
 		''' writes the participant_velocity_data dict to a file, for debugging '''
-		with open('C:\\vr\\vr3\\_master_data\\velocity_data.txt', 'w') as file:
+		with open('velocity_data.txt', 'w') as file:
 			file.write("t;v\n")
 			for t in sorted(self._participant_velocity_data.keys()):
 				v = self._participant_velocity_data[t]
