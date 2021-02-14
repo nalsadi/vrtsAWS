@@ -4,6 +4,11 @@ const port = 3000
 
 
 const { auth } = require('express-openid-connect');
+app.set('view engine', 'pug')
+app.set('views', __dirname + '/views');
+
+app.use(express.static(__dirname + '/views'));
+
 
 const config = {
   authRequired: false,
@@ -19,16 +24,13 @@ app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
 const { requiresAuth } = require('express-openid-connect');
 
-app.get('/profile', requiresAuth(), (req, res) => {
+app.get('/mdg', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
