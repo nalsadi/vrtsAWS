@@ -76,3 +76,423 @@ Traceback (most recent call last):
     filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
 AttributeError: 'module' object has no attribute 'savgol_filter'
 2021-02-15 12:09:08,995 INFO master data generator finished and exiting
+2021-02-15 13:56:11,926 INFO MASTER DATA GENERATOR START
+2021-02-15 13:56:11,929 INFO attempting to process master data
+2021-02-15 13:56:12,053 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:56:12,219 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:56:12,553 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:56:12,553 INFO master data generator finished and exiting
+2021-02-15 13:56:58,792 INFO MASTER DATA GENERATOR START
+2021-02-15 13:56:58,794 INFO attempting to process master data
+2021-02-15 13:56:58,918 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:56:59,058 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:56:59,322 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:56:59,323 INFO master data generator finished and exiting
+2021-02-15 13:57:43,551 INFO MASTER DATA GENERATOR START
+2021-02-15 13:57:43,552 INFO attempting to process master data
+2021-02-15 13:57:43,670 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:57:43,809 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:57:44,058 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:57:44,059 INFO master data generator finished and exiting
+2021-02-15 13:58:49,324 INFO MASTER DATA GENERATOR START
+2021-02-15 13:58:49,326 INFO attempting to process master data
+2021-02-15 13:58:49,452 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:58:49,594 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:58:49,905 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:58:49,907 INFO master data generator finished and exiting
+2021-02-15 13:59:20,132 INFO MASTER DATA GENERATOR START
+2021-02-15 13:59:20,132 INFO attempting to process master data
+2021-02-15 13:59:20,274 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:59:20,454 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:59:20,740 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:59:20,740 INFO master data generator finished and exiting
+2021-02-15 13:59:31,683 INFO MASTER DATA GENERATOR START
+2021-02-15 13:59:31,683 INFO attempting to process master data
+2021-02-15 13:59:31,824 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:59:31,959 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:59:32,214 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 13:59:32,215 INFO master data generator finished and exiting
+2021-02-15 14:00:43,453 INFO MASTER DATA GENERATOR START
+2021-02-15 14:00:43,454 INFO attempting to process master data
+2021-02-15 14:00:43,576 ERROR unable to process participant TEST_HIT_FAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 14:00:43,716 ERROR unable to process participant TEST_HIT_NEAR_LANE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 14:00:43,968 ERROR unable to process participant TEST_HIT_FAR_LANE_NOT_IN_MIDDLE
+Traceback (most recent call last):
+  File "vrtsAWS/MasterDataGenerator.py", line 141, in save_master_data
+    p_sessions)
+  File "vrtsAWS/MasterDataGenerator.py", line 116, in _get_non_practice_trials_output
+    spss_output_list.extend(rdp.get_spss_output())
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 175, in get_spss_output
+    self.parseTrials()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 70, in wrapper
+    res = func(*arg)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/RawDataParser.py", line 208, in parseTrials
+    trialData = TrialDetail(raw_data, self.__carBoundingBoxDict)
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialDetail.py", line 28, in __init__
+    self._participant = TrialParticipant(self._trial_data[TrialData.PARTICIPANT_POSITION], self._trial_data[TrialData.PARTICIPANT_ORIENTATION])
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 41, in __init__
+    self._repair_velocity_data_with_savitzky_golay_filter()
+  File "/Users/nalsadi/Documents/vrts/vrtsAWS/vrtsAWS/TrialParticipant.py", line 134, in _repair_velocity_data_with_savitzky_golay_filter
+    filtered_velocities = scipy.signal.savgol_filter(sorted_velocities, window_length, polynomial_order)
+AttributeError: 'module' object has no attribute 'savgol_filter'
+2021-02-15 14:00:43,970 INFO master data generator finished and exiting

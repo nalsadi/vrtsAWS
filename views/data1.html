@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +30,19 @@ https://templatemo.com/tm-543-breezed
     <link rel="stylesheet" href="assets/css/owl-carousel.css">
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
+    <meta charset="utf-8">
+        <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
 
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+        </style>
     </head>
     
     <body>
@@ -100,7 +114,7 @@ https://templatemo.com/tm-543-breezed
           <!-- // Item -->
         </div>
     </div>
-    <div class="scroll-down scroll-to-section"><a href="#about"><i class="fa fa-arrow-down"></i></a></div>
+
     
     <!-- ***** Main Banner Area End ***** -->
 
@@ -112,30 +126,7 @@ https://templatemo.com/tm-543-breezed
     <!-- ***** Contact Us Area Ends ***** -->
     
     <!-- ***** Footer Start ***** -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-xs-12">
-                    <div class="left-text-content">
-                        <p>Copyright &copy; 2020 Breezed Co., Ltd. 
-                        
-                        - Design: <a rel="nofollow noopener" href="https://templatemo.com">TemplateMo</a></p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xs-12">
-                    <div class="right-text-content">
-                            <ul class="social-icons">
-                                <li><p>Follow Us</p></li>
-                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-facebook"></i></a></li>
-                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-twitter"></i></a></li>
-                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a rel="nofollow" href="https://fb.com/templatemo"><i class="fa fa-dribbble"></i></a></li>
-                            </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+
     
 
     <!-- jQuery -->
@@ -158,7 +149,27 @@ https://templatemo.com/tm-543-breezed
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
     
+    <script src="http://d3js.org/d3.v3.min.js"></script> 
+        <script src="d3.min.js?v=3.2.8"></script>
 
+        <script type="text/javascript"charset="utf-8">
+            d3.text("/MASTER.csv", function(data) {
+                var parsedCSV = d3.csv.parseRows(data);
+
+                var container = d3.select("body")
+                    .append("table")
+
+                    .selectAll("tr")
+                        .data(parsedCSV).enter()
+                        .append("tr")
+
+                    .selectAll("td")
+                        .data(function(d) { return d; }).enter()
+                        .append("td")
+                        .text(function(d) { return d; });
+            });
+        </script>
 
   </body>
 </html>
+

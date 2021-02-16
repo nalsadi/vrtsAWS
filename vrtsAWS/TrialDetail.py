@@ -139,8 +139,8 @@ class TrialDetail:
 			closest_car = self._get_closest_car_to_participant_at_time(t, direction)
 			self._closest_car_dict[t] = closest_car
 #			print "  closest car at t=%s = %s" % (t, closest_car.get_viz_node_id())
-			if closest_car != None:
-				print("Closest Car Direction", closest_car.get_direction())		
+			#if closest_car != None:
+				#print("Closest Car Direction", closest_car.get_direction())		
 					
 			# Set initially to True (it will be set to False later)
 			self._entered_before_first_car = True

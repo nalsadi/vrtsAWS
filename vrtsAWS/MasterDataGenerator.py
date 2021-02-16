@@ -121,9 +121,9 @@ class MasterDataGenerator:
         """ Save the master data for this participant / timestamp """
 
         header = self._get_header()
-
-        master_data_file = open(os.path.join(
-            self._data_dir, "MASTER.txt"), "w")
+        print("SAVING TO ", os.path.join(
+            self._data_dir, "MASTER.txt"))
+        master_data_file = open("MASTER.txt", "w")
         master_data_file.write(header)
         master_data_file.write("\n")
 
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
     #	data_dir = "C:\\Users\\user\\Desktop\\Partic Mean GAP SIZE\\Paste DATA here\\"
     #	data_dir = "C:\\Users\\user\\Desktop\\BackpackTestingData\\"
-    data_dir = '../testdata/'
+    data_dir = './testdata/'
     print(data_dir)
     dh = DataHandler()
     participant_sessions = dh.get_participant_sessions(
@@ -182,3 +182,17 @@ if __name__ == "__main__":
     mdg.save_master_data()
     print "Save complete. Exiting..."
     logger.info("master data generator finished and exiting")
+        #read input file
+    fin = open("MASTER.txt", "rt")
+    #read file contents to string
+    data = fin.read()
+    #replace all occurrences of the required string
+    data = data.replace(';', ',')
+    #close the input file
+    fin.close()
+    #open the input file in write mode
+    fin = open("views/images/MASTER.csv", "wt")
+    #overrite the input file with the resulting data
+    fin.write(data)
+    #close the file
+    fin.close()
